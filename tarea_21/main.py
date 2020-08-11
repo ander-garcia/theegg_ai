@@ -1,7 +1,4 @@
 import sys
-
-
-
 from fraccion import fraccion_irreducible 
 
 try:

@@ -1,22 +1,28 @@
 # TAREA 21: Fracción irreducible
 
+## Requerimientos
+
+Python
+
+## Resumen
+
 Para ejecutar:
 
-python main.py 0.0050
+        python main.py 0.0050
 
 Si el número no está entre 0 y 1 se muestra un error
 
-En caso contrario la salida sigue este formato:
+En caso contrario la salida muestra la fracción irreducible en este formato:
 
-0.005 = 1 / 200
+        0.005 = 1 / 200
 
-# Explicación
+## Explicación
 
-Paso 1: Leer parámetro de entrada
+### Paso 1: Leer parámetro de entrada
 
 En este paso se lee el número de entrada y se valida que es correcto. Si no es correcto, bien porque no está en el rango de 0 a 1 o no se ha podido convertir a float, se lanza un error y se para el programa
 
-Paso 2: Calcular fracción irreducible
+### Paso 2: Calcular fracción irreducible
 
 El cálculo se hace en la función "fraccion_irreducible" que se encuentra en el fichero "fraccion.py". Esta función tien dos parámetros de entrada, el número decimal y un número de referencia opcional. El número de referencia sirve para poder personalizar el número de decimales con el que queremos trabajar. POr defecto es 10000, pero se podría actualizar en el futuro con este parámetro.
 
@@ -24,11 +30,11 @@ Para calcular esta fracción, en primer lugar se genera el numerador y el denomi
 
 La función devuelve dos valores, el denominador y el numerador
 
-Paso 3: Visualizar salida
+### Paso 3: Visualizar salida
 
 En este último paso se muestra salida en el formato "0.005 = 1 / 200"
 
-Paso adicional: Test
+## Paso adicional: Test
 
 Para lanzar los test es necesario instalar la librería pytest (https://docs.pytest.org/en/stable/getting-started.html)
 
