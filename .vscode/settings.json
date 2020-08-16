@@ -1,6 +1,6 @@
 {
     "python.testing.pytestArgs": [
-        "tarea_22"
+        "."
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
