@@ -26,3 +26,11 @@ Desde el fichero main.py se crean los dos pokemon y se lanza el combate. El cód
 La función de combate es estática (es compartida por todas las instancias Pokemon, se marca con el @staticmethod en python). Sus parámetros son el primer y el segundo pokemon, y el parámetro opcional turno inicial (0 o 1, si no se indica se inicializa a 1). En la función se sigue el diagrama de flujo adjunto, mostrando por pantalla la evolución del combate y devolviendo el pokemon ganador y perdedor.
 
 Desde el fichero main se felicita al pokemon ganador, en este caso Pikachu
+
+## Paso adicional: Test
+
+Para lanzar los test es necesario instalar la librería pytest (https://docs.pytest.org/en/stable/getting-started.html)
+
+A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "2 passed in 0.05s"
+
+Los test se encuentra en el fichero "pokemon_test.py". En este fichero hay dos tests, en uno el combate lo empieza Pikachu y enel otro JigglyPuff. Cada test comprueba quien es el ganador, y los puntos de vida restantes de cada Pokemon.
