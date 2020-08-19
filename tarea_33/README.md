@@ -23,7 +23,7 @@ Enhorabuena Pikachu !!
 
 Desde el fichero main.py se crean los dos pokemon y se lanza el combate. El código de los pokemon está en la clase Pokemon en el fichero pokemon.py. La clase pokemon tiene un constructor en el que se indica el nombre, la vida, el ataque y el turno del pokemon; y una función de combate.
 
-La función de combate es estática (es compartida por todas las instancias Pokemon, se marca con el @staticmethod en python). Sus parámetros son el primer y el segundo pokemon, y el parámetro opcional turno inicial (0 o 1, si no se indica se inicializa a 1). En la función se sigue el diagrama de flujo adjunto, mostrando por pantalla la evolución del combate y devolviendo el pokemon ganador y perdedor.
+La función de combate es estática (es compartida por todas las instancias Pokemon, se marca con el @staticmethod en python). Sus parámetros son el primer y el segundo pokemon, y el parámetro opcional turno inicial (0 o 1, si no se indica se inicializa a 1). En la función se sigue el diagrama de flujo adjunto, mostrando por pantalla la evolución del combate y devolviendo el pokemon ganador.
 
 Desde el fichero main se felicita al pokemon ganador, en este caso Pikachu
 
@@ -33,4 +33,4 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "2 passed in 0.05s"
 
-Los test se encuentra en el fichero "pokemon_test.py". En este fichero hay dos tests, en uno el combate lo empieza Pikachu y enel otro JigglyPuff. Cada test comprueba quien es el ganador, y los puntos de vida restantes de cada Pokemon.
+Los test se encuentra en el fichero "pokemon_test.py". En este fichero hay dos tests, en uno el combate lo empieza Pikachu y en el otro JigglyPuff. Cada test comprueba quien es el ganador, y los puntos de vida restantes de cada Pokemon.
