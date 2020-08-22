@@ -79,3 +79,24 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "4 passed in 0.05s"
 
 Los test se encuentra en el fichero "palabras_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato array de frases a invertir, y array con las frases invertidas. Los test llaman a la funcion "invertir_palabras" y comprueban que los resultados obtenidos son los esperados
+
+## Palindromo
+
+### Resumen palindromo
+
+Para ejecutar:
+
+        python palindromo.py
+
+El programa pide al usuario un número N (1 <= N <= 1.000.000), y devuelve el palíndromo que a partir del número devuelve el menor entero M tal que M <= N que es primo y M es un palíndromo N. Por ejemplo, si N es 31, entonces la respuesta es 101.
+
+El palíndromo se calcula en la función get_palindromo del fichero palindromo.py
+Ejemplos de entradas y salidas
+
+### Paso adicional: Test
+
+Para lanzar los test es necesario instalar la librería pytest (https://docs.pytest.org/en/stable/getting-started.html)
+
+A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "4 passed in 0.05s"
+
+Los test se encuentra en el fichero "palindromo_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato número de entrada y palíndromo esperado. Los test llaman a la funcion "get_palindromo" y comprueban que los resultados obtenidos son los esperados
