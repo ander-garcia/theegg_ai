@@ -20,21 +20,22 @@ En primer lugar se considera que la longitud máxima de la coincidencia va a ser
 
 Ejemplos de entradas y salidas
 
-Primera cadena de ADN:
-ctgggccttgaggaaaactg
+        Primera cadena de ADN:
+        ctgggccttgaggaaaactg
 
-Segunda cadena de ADN:
-gtaccagtactgatagt
+        Segunda cadena de ADN:
+        gtaccagtactgatagt
 
-La coincidencia más larga es actg
+        La coincidencia más larga es actg
 
-Primera cadena de ADN:
-asdasd
 
-Segunda cadena de ADN:
-nvnvbn
+        Primera cadena de ADN:
+        asdasd
 
-No hay coincidencias entre las cadenas de entrada
+        Segunda cadena de ADN:
+        nvnvbn
+
+        No hay coincidencias entre las cadenas de entrada
 
 ### Paso adicional: Test
 
@@ -42,4 +43,39 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "4 passed in 0.05s"
 
-Los test se encuentra en el fichero "biolog_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato primera cadena de ADN, segunda cadena de ADN, y coincidencia esperada. Los test llaman a la funcion "comparar_adn" y comprueban que los resultados obtenidos son los esperados
+Los test se encuentra en el fichero "biologo_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato primera cadena de ADN, segunda cadena de ADN, y coincidencia esperada. Los test llaman a la funcion "comparar_adn" y comprueban que los resultados obtenidos son los esperados
+
+## Invertir palabras
+
+### Resumen invertir palabras
+
+Para ejecutar:
+
+        python palabras.py
+
+El programa pide al usuario el número de frases y cada frase, y devuelve cada frase con el orden de las palabras invertido.
+
+La inversión de las palabaras se hace en la función invertir_palabras del fichero palabras.py. Esta función recorre cada frase del array de frases de entrada. Separa cada frase en un array de palabras a partir de los espacios entre las palabras. Luego crea un nuevo array invertido recorriendo en orden inverso el array de palabras. Por último, genera una nueva frase juntando con espacios el array invertido. Esta nueva frase se añade al array de frases invertidas, que es devuelto por la función.
+
+Ejemplos de entradas y salidas
+
+        Número de frases:
+        2
+
+        Siguiente frase:
+        qq ww ee rr
+
+        Siguiente frase:
+        aa
+
+        Case #1: rr ee ww qq
+
+        Case #2: aa
+
+### Paso adicional: Test
+
+Para lanzar los test es necesario instalar la librería pytest (https://docs.pytest.org/en/stable/getting-started.html)
+
+A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "4 passed in 0.05s"
+
+Los test se encuentra en el fichero "palabras_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato array de frases a invertir, y array con las frases invertidas. Los test llaman a la funcion "invertir_palabras" y comprueban que los resultados obtenidos son los esperados
