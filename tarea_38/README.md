@@ -1,4 +1,4 @@
-# TAREA 22: El algoritmo del lechero
+# TAREA 38: resolución de más algoritmos
 
 ## Requerimientos
 
