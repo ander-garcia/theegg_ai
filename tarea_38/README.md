@@ -90,8 +90,13 @@ Para ejecutar:
 
 El programa pide al usuario un número N (1 <= N <= 1.000.000), y devuelve el palíndromo que a partir del número devuelve el menor entero M tal que M <= N que es primo y M es un palíndromo N. Por ejemplo, si N es 31, entonces la respuesta es 101.
 
-El palíndromo se calcula en la función get_palindromo del fichero palindromo.py
+El palíndromo se calcula en la función get_palindromo del fichero palindromo.py. Esta función tiene dos parámetros, el númeor y un número máximo de búsqueda optativo (valor por defecto de 100000000). Si no encuentra un palindromo primo mayor o igual que el número de entrada y menor que el número máximo devuelve -1. Comenzando por el número de entrada, comprueba si es palindromo y primo. Si lo es de sevuelve el valor, en caso contrario número se incrementa en 1 y se vuelve a probar hasta que lo sea o se supere el número máximo.
+
 Ejemplos de entradas y salidas
+
+        Número:
+        31
+        Palíndromo primo mayor más cercano es 101
 
 ### Paso adicional: Test
 
@@ -99,4 +104,10 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "4 passed in 0.05s"
 
-Los test se encuentra en el fichero "palindromo_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato número de entrada y palíndromo esperado. Los test llaman a la funcion "get_palindromo" y comprueban que los resultados obtenidos son los esperados
+Los test se encuentra en el fichero "palindromo_test.py". En este fichero hay tres tests, cada uno con sus datos dentrada.
+
+En el primero hay un array con datos de entrada (testdata), en el formato número de entrada y palíndromo esperado. Los test llaman a la funcion "get_palindromo" y comprueban que los resultados obtenidos son los esperados
+
+En el segundo hay un array con datos de entrada (testdata_palindromo), en el formato número de entrada y si es palíndromoo no. Los test llaman a la funcion "is_palindromo" y comprueban que los resultados obtenidos son los esperados.
+
+En el tercero hay un array con datos de entrada (testdata_primo), en el formato número de entrada y si es primo no. Los test llaman a la funcion "is_primo" y comprueban que los resultados obtenidos son los esperados
