@@ -1,11 +1,27 @@
 import random
 import re
 
+COMODIN_A = 53
+COMODIN_B = 54
+VALOR_COMODINES = 53
+LETRAS_ABECEDARIO = 26
+TAMAÑO_GRUPO = 5
+CARACTER_RELLENO = "X"
+
+
+def print_con_espacios(texto, tamaño_grupo):
+    return " ".join(texto[i:i+tamaño_grupo] for i in range(0, len(texto), tamaño_grupo))
+
 
 def normalizar_texto(texto):
     normalizado = eliminar_no_alfanumericos(texto).upper()
     normalizado = remplazar_letras(normalizado)
+    normalizado = rellenar(normalizado, TAMAÑO_GRUPO, CARACTER_RELLENO)
     return normalizado
+
+
+def rellenar(texto, tamaño_grupo, caracter_relleno):
+    return texto.ljust(len(texto)+(tamaño_grupo-len(texto)) % tamaño_grupo, caracter_relleno)
 
 
 def remplazar_letras(texto):
@@ -59,18 +75,20 @@ def convertir_a_letra(numero):
 
 
 def sumar_numeros(array1, array2):
-    suma = [(array1[i]+array2[i]) % 26 for i in range(len(array1))]
+    suma = [(array1[i]+array2[i]) %
+            LETRAS_ABECEDARIO for i in range(len(array1))]
     for i in range(len(suma)):
         if suma[i] == 0:
-            suma[i] = 26
+            suma[i] = LETRAS_ABECEDARIO
     return suma
 
 
 def restar_numeros(array1, array2):
-    resta = [(array1[i]-array2[i]) % 26 for i in range(len(array1))]
+    resta = [(array1[i]-array2[i]) %
+             LETRAS_ABECEDARIO for i in range(len(array1))]
     for i in range(len(resta)):
         if resta[i] == 0:
-            resta[i] = 26
+            resta[i] = LETRAS_ABECEDARIO
     return resta
 
 
@@ -81,8 +99,8 @@ def nueva_baraja(clave=""):
     else:
         baraja = list([*range(1, 55)])
         for i in range(len(clave)):
-            baraja = mover_carta(53, 1, baraja)
-            baraja = mover_carta(54, 2, baraja)
+            baraja = mover_carta(COMODIN_A, 1, baraja)
+            baraja = mover_carta(COMODIN_B, 2, baraja)
             baraja = cortar_entre_comodines(baraja)
             baraja = cortar_tras_valor_ultima_carta(baraja)
             baraja = cortar_tras_valor_letra(clave[i], baraja)
@@ -91,10 +109,6 @@ def nueva_baraja(clave=""):
 
 def barajear(baraja):
     return random.sample(baraja, len(baraja))
-
-
-def get_index_carta(valor_carta, baraja):
-    return baraja.index(53)
 
 
 def mover_carta(valor_carta, posiciones, baraja):
@@ -109,11 +123,11 @@ def mover_carta(valor_carta, posiciones, baraja):
 
 
 def get_indice_primer_comodin(baraja):
-    return min(baraja.index(53), baraja.index(54))
+    return min(baraja.index(COMODIN_A), baraja.index(COMODIN_B))
 
 
 def get_indice_segundo_comodin(baraja):
-    return max(baraja.index(53), baraja.index(54))
+    return max(baraja.index(COMODIN_A), baraja.index(COMODIN_B))
 
 
 def cortar_entre_comodines(baraja):
@@ -129,8 +143,8 @@ def cortar_entre_comodines(baraja):
 
 
 def cortar_tras_valor_ultima_carta(baraja):
-    valor_ultima_carta = min(baraja[len(baraja)-1], 53)
-    if valor_ultima_carta < 53:
+    valor_ultima_carta = min(baraja[len(baraja)-1], VALOR_COMODINES)
+    if valor_ultima_carta < VALOR_COMODINES:
         primer_corte = baraja[0:valor_ultima_carta]
         segundo_corte_sin_carta_final = baraja[valor_ultima_carta:len(
             baraja)-1]
@@ -155,23 +169,23 @@ def generar_clave(longitud, clave_inicial=""):
     clave = []
     baraja = nueva_baraja(clave_inicial)
     for i in range(1, longitud+1):
-        valor_clave = 54
-        while valor_clave >= 53:
-            baraja = mover_carta(53, 1, baraja)
-            baraja = mover_carta(54, 2, baraja)
+        valor_clave = COMODIN_B
+        while valor_clave >= COMODIN_A:
+            baraja = mover_carta(COMODIN_A, 1, baraja)
+            baraja = mover_carta(COMODIN_B, 2, baraja)
             baraja = cortar_entre_comodines(baraja)
             baraja = cortar_tras_valor_ultima_carta(baraja)
-            valor_primera_carta = min(baraja[0], 53)
+            valor_primera_carta = min(baraja[0], VALOR_COMODINES)
             valor_clave = baraja[valor_primera_carta]
-        letra_clave = convertir_a_letra(valor_clave % 26)
+        letra_clave = convertir_a_letra(valor_clave % LETRAS_ABECEDARIO)
         clave.append(letra_clave)
     return clave
 
 
-def cifrar(mensaje, clave):
+def cifrar(mensaje, clave_inicial):
     texto = normalizar_texto(mensaje)
     texto_cifrado = ""
-    clave = generar_clave(len(texto), clave)
+    clave = generar_clave(len(texto), clave_inicial)
     texto_numeros = convertir_a_numeros(texto)
     clave_numeros = convertir_a_numeros(clave)
     cifrado_numeros = sumar_numeros(texto_numeros, clave_numeros)
@@ -180,12 +194,22 @@ def cifrar(mensaje, clave):
     return texto_cifrado
 
 
-def descifrar(mensaje, clave):
+def descifrar(mensaje, clave_inicial):
     texto_descifrado = ""
-    clave = generar_clave(len(mensaje), clave)
+    clave = generar_clave(len(mensaje), clave_inicial)
     mensaje_numeros = convertir_a_numeros(mensaje)
     clave_numeros = convertir_a_numeros(clave)
     descifrado_numeros = restar_numeros(mensaje_numeros, clave_numeros)
     texto_descifrado = convertir_a_letras(descifrado_numeros)
     texto_descifrado = "".join(texto_descifrado)
     return texto_descifrado
+
+
+if __name__ == "__main__":
+    # solo se ejecuta al llamar directmente al fichero, no al importarlo
+    mensaje = input("Mensaje a cifrar:\n")
+    clave = input("Clave (opcional, se convertirá a mayúsculas):\n")
+    cifrado = cifrar(mensaje, clave)
+    descifrado = descifrar(cifrado, clave)
+    print(f"Mensaje cifrado {print_con_espacios(cifrado,TAMAÑO_GRUPO)}")
+    print(f"Mensaje descifrado {print_con_espacios(descifrado,TAMAÑO_GRUPO)}")

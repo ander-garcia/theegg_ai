@@ -6,7 +6,8 @@ from solitario import (normalizar_texto, convertir_a_numeros,
                        get_indice_segundo_comodin, cortar_entre_comodines,
                        cortar_tras_valor_ultima_carta, generar_clave, cifrar, descifrar)
 
-testdata_normalizar = [("a b, c ü", "ABCU"), (" .á b ñ ", "ABN")]
+testdata_normalizar = [("a b, c ü", "ABCUX"),
+                       ("a b, c üh", "ABCUH"), (" .á b ñ ", "ABNXX")]
 
 
 @pytest.mark.parametrize("texto, texto_normalizado", testdata_normalizar)
