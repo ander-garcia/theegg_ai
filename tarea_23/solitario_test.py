@@ -202,13 +202,20 @@ def test_generar_clave_baraja_ordenada():
     assert clave == "DWJXHYRFDGTMSHPUURXJ"
 
 
-testdata_cifrar = [("aaaaa aaaaa", "EXKYIZSGEH"),
-                   ("Code in Ruby, live longer!", "GLNCQMJAFFFVOMBJIYCB")]
+testdata_cifrar = [("aaaaa aaaaa", "EXKYIZSGEH", ""),
+                   ("Code in Ruby, live longer!", "GLNCQMJAFFFVOMBJIYCB", ""),
+                   ("SOLIT AIREX", "KIRAKSFJAN", "CRYPTONOMICON"),
+                   ("AAAAA AAAAA AAAAA", "ITHZUJIWGRFARMW", "FOO")]
 
 
-@ pytest.mark.parametrize("mensaje, cifrado", testdata_cifrar)
-def test_cifrar(mensaje, cifrado):
-    result = cifrar(mensaje)
+@ pytest.mark.parametrize("mensaje, cifrado,clave", testdata_cifrar)
+def test_cifrar(mensaje, cifrado, clave):
+    result = cifrar(mensaje, clave)
     assert result == cifrado
-    result_descifrado = descifrar(result)
+    result_descifrado = descifrar(result, clave)
     assert result_descifrado == normalizar_texto(mensaje)
+
+
+def test_nueva_baraja():
+    assert nueva_baraja("SOLITAIRE") == [49, 50, 51, 3, 4, 5, 6, 7, 8, 18, 11, 12, 13, 14, 17, 52, 19, 37, 53, 44, 45, 27, 28,
+                                         15, 16, 9, 10, 54, 20, 1, 23, 24, 25, 26, 22, 29, 30, 31, 32, 33, 34, 35, 36, 2, 39, 40, 41, 42, 43, 21, 46, 47, 48, 38]

@@ -74,9 +74,18 @@ def restar_numeros(array1, array2):
     return resta
 
 
-def nueva_baraja():
-    # crea una nueva baraja ordenada
-    baraja = list([*range(1, 55)])
+def nueva_baraja(clave=""):
+    # crea una nueva baraja ordenad
+    if clave == "":
+        baraja = list([*range(1, 55)])
+    else:
+        baraja = list([*range(1, 55)])
+        for i in range(len(clave)):
+            baraja = mover_carta(53, 1, baraja)
+            baraja = mover_carta(54, 2, baraja)
+            baraja = cortar_entre_comodines(baraja)
+            baraja = cortar_tras_valor_ultima_carta(baraja)
+            baraja = cortar_tras_valor_letra(clave[i], baraja)
     return baraja
 
 
@@ -131,9 +140,20 @@ def cortar_tras_valor_ultima_carta(baraja):
     return baraja
 
 
-def generar_clave(longitud):
+def cortar_tras_valor_letra(letra, baraja):
+    valor_letra = convertir_a_numero(letra)
+    primer_corte = baraja[0:valor_letra]
+    segundo_corte_sin_carta_final = baraja[valor_letra:len(
+        baraja)-1]
+    ultima_carta = [baraja[len(baraja)-1]]
+    baraja = segundo_corte_sin_carta_final + primer_corte
+    baraja = baraja + ultima_carta
+    return baraja
+
+
+def generar_clave(longitud, clave_inicial=""):
     clave = []
-    baraja = nueva_baraja()
+    baraja = nueva_baraja(clave_inicial)
     for i in range(1, longitud+1):
         valor_clave = 54
         while valor_clave >= 53:
@@ -148,10 +168,10 @@ def generar_clave(longitud):
     return clave
 
 
-def cifrar(mensaje):
+def cifrar(mensaje, clave):
     texto = normalizar_texto(mensaje)
     texto_cifrado = ""
-    clave = generar_clave(len(texto))
+    clave = generar_clave(len(texto), clave)
     texto_numeros = convertir_a_numeros(texto)
     clave_numeros = convertir_a_numeros(clave)
     cifrado_numeros = sumar_numeros(texto_numeros, clave_numeros)
@@ -160,9 +180,9 @@ def cifrar(mensaje):
     return texto_cifrado
 
 
-def descifrar(mensaje):
+def descifrar(mensaje, clave):
     texto_descifrado = ""
-    clave = generar_clave(len(mensaje))
+    clave = generar_clave(len(mensaje), clave)
     mensaje_numeros = convertir_a_numeros(mensaje)
     clave_numeros = convertir_a_numeros(clave)
     descifrado_numeros = restar_numeros(mensaje_numeros, clave_numeros)
