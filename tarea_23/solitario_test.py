@@ -1,6 +1,10 @@
 import pytest
 from solitario import (normalizar_texto, convertir_a_numeros,
-                       convertir_a_numero, convertir_a_letras, convertir_a_letra, sumar_numeros, restar_numeros)
+                       convertir_a_numero, convertir_a_letras,
+                       convertir_a_letra, sumar_numeros, restar_numeros,
+                       mover_carta, nueva_baraja, get_indice_primer_comodin,
+                       get_indice_segundo_comodin, cortar_entre_comodines,
+                       cortar_tras_valor_ultima_carta, generar_clave, cifrar, descifrar)
 
 testdata_normalizar = [("a b, c ü", "ABCU"), (" .á b ñ ", "ABN")]
 
@@ -44,3 +48,167 @@ def test_sumar_numeros(array1, array2, suma):
 def test_restar_numeros(resta, array2, array1):
     result = restar_numeros(array1, array2)
     assert result == resta
+
+
+def test_mover_carta():
+    baraja = nueva_baraja()
+    assert baraja.index(53) == 52
+    assert baraja.index(5) == 4
+    assert get_indice_primer_comodin(baraja) == 52
+    assert get_indice_segundo_comodin(baraja) == 53
+    baraja = mover_carta(53, 3, baraja)
+    assert baraja.index(53) == 2
+    assert baraja.index(5) == 5
+    assert get_indice_primer_comodin(baraja) == 2
+    assert get_indice_segundo_comodin(baraja) == 53
+
+
+testdata_cortar_entre_comodines = [
+    ([2, 4, 6, 54, 5, 8, 7, 1, 53, 3, 9], [3, 9, 54, 5, 8, 7, 1, 53, 2, 4, 6]),
+    ([2, 4, 6, 53, 5, 8, 7, 1, 54, 3, 9], [3, 9, 53, 5, 8, 7, 1, 54, 2, 4, 6]),
+    ([53, 5, 8, 7, 1, 54, 3, 9], [3, 9, 53, 5, 8, 7, 1, 54]),
+    ([53, 5, 8, 7, 1, 54], [53, 5, 8, 7, 1, 54])
+]
+
+
+@ pytest.mark.parametrize("baraja, resultado", testdata_cortar_entre_comodines)
+def test_cortar_entre_comodines(baraja, resultado):
+    assert cortar_entre_comodines(baraja) == resultado
+
+
+testdata_cortar_tras_valor_ultima_carta = [
+    ([7, 1, 2, 3, 11, 12, 13, 21,  4, 5, 31, 32, 32, 34, 8, 9],
+     [5, 31, 32, 32, 34, 8, 7, 1, 2, 3, 11, 12, 13, 21,  4, 9]),
+    ([1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54], [1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54]),
+
+
+]
+
+
+@pytest.mark.parametrize("baraja, resultado", testdata_cortar_tras_valor_ultima_carta)
+def test_cortar_tras_valor_ultima_carta(baraja, resultado):
+    assert cortar_tras_valor_ultima_carta(baraja) == resultado
+
+
+def test_generar_clave_baraja_ordenada():
+    clave = generar_clave(20)
+    clave = "".join(clave)
+    assert clave == "DWJXHYRFDGTMSHPUURXJ"
+
+
+testdata_cifrar = [("aaaaa aaaaa", "EXKYIZSGEH"),
+                   ("Code in Ruby, live longer!", "GLNCQMJAFFFVOMBJIYCB")]
+
+
+@ pytest.mark.parametrize("mensaje, cifrado", testdata_cifrar)
+def test_cifrar(mensaje, cifrado):
+    result = cifrar(mensaje)
+    assert result == cifrado
+    result_descifrado = descifrar(result)
+    assert result_descifrado == normalizar_texto(mensaje)
