@@ -4,16 +4,28 @@ from solitario import (normalizar_texto, convertir_a_numeros,
                        convertir_a_letra, sumar_numeros, restar_numeros,
                        mover_carta, nueva_baraja, get_indice_primer_comodin,
                        get_indice_segundo_comodin, cortar_entre_comodines,
-                       cortar_tras_valor_ultima_carta, generar_clave, cifrar, descifrar)
+                       cortar_tras_valor_ultima_carta, generar_clave, cifrar, descifrar, rellenar)
 
-testdata_normalizar = [("a b, c ü", "ABCUX"),
-                       ("a b, c üh", "ABCUH"), (" .á b ñ ", "ABNXX")]
+testdata_normalizar = [("a b, c ü", "ABCU"),
+                       ("a b, c üh", "ABCUH"), (" .á b ñ ", "ABN")]
 
 
 @pytest.mark.parametrize("texto, texto_normalizado", testdata_normalizar)
 def test_normalizar_texto(texto, texto_normalizado):
     result = normalizar_texto(texto)
     assert result == texto_normalizado
+
+
+testdata_rellenar = [("aaaa", "aaaaX"),
+                     ("aaaaa", "aaaaa"), ("aaaaaaa", "aaaaaaaXXX"), ("aaaaaaaaaa", "aaaaaaaaaa")]
+
+
+@pytest.mark.parametrize("texto, texto_rellenado", testdata_rellenar)
+def test_rellenar_texto(texto, texto_rellenado):
+    tamaño_grupo = 5
+    caracter_relleno = "X"
+    result = rellenar(texto, tamaño_grupo, caracter_relleno)
+    assert result == texto_rellenado
 
 
 testdata_convertir_a_numeros = [(["A", "B", "Z"], [1, 2, 26]),
@@ -206,7 +218,8 @@ def test_generar_clave_baraja_ordenada():
 testdata_cifrar = [("aaaaa aaaaa", "EXKYIZSGEH", ""),
                    ("Code in Ruby, live longer!", "GLNCQMJAFFFVOMBJIYCB", ""),
                    ("SOLIT AIREX", "KIRAKSFJAN", "CRYPTONOMICON"),
-                   ("AAAAA AAAAA AAAAA", "ITHZUJIWGRFARMW", "FOO")]
+                   ("AAAAA AAAAA AAAAA", "ITHZUJIWGRFARMW", "FOO"),
+                   ("Eureka funciona", "XKGXRLEWWUPDPAY", "THEEGG")]
 
 
 @ pytest.mark.parametrize("mensaje, cifrado,clave", testdata_cifrar)
@@ -214,9 +227,18 @@ def test_cifrar(mensaje, cifrado, clave):
     result = cifrar(mensaje, clave)
     assert result == cifrado
     result_descifrado = descifrar(result, clave)
-    assert result_descifrado == normalizar_texto(mensaje)
+    assert result_descifrado == rellenar(normalizar_texto(mensaje))
 
 
-def test_nueva_baraja():
-    assert nueva_baraja("SOLITAIRE") == [49, 50, 51, 3, 4, 5, 6, 7, 8, 18, 11, 12, 13, 14, 17, 52, 19, 37, 53, 44, 45, 27, 28,
-                                         15, 16, 9, 10, 54, 20, 1, 23, 24, 25, 26, 22, 29, 30, 31, 32, 33, 34, 35, 36, 2, 39, 40, 41, 42, 43, 21, 46, 47, 48, 38]
+testdata_nueva_baraja = [
+    ("SOLITAIRE", [49, 50, 51, 3, 4, 5, 6, 7, 8, 18, 11, 12, 13, 14, 17, 52, 19, 37, 53, 44, 45, 27, 28,
+                   15, 16, 9, 10, 54, 20, 1, 23, 24, 25, 26, 22, 29, 30, 31, 32, 33, 34, 35, 36, 2, 39, 40, 41, 42, 43, 21, 46, 47, 48, 38]),
+    ("THEEGG", [4, 5, 6, 23, 53, 11, 31, 32, 34, 35, 54, 7, 8, 9, 52, 12, 13, 14, 15, 16, 17, 18, 19,
+                20, 21, 1, 24, 25, 26, 27, 28, 29, 30, 2, 33, 22, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 3, 10])
+]
+
+
+@ pytest.mark.parametrize("clave,baraja", testdata_nueva_baraja)
+def test_nueva_baraja(clave, baraja):
+    result = nueva_baraja(clave)
+    assert result == baraja
