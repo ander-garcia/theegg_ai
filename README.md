@@ -15,3 +15,5 @@ Theegg AI Academy
 -Tarea 33: El juego de Pikachu
 
 -Tarea 38: Resolución de más algoritmos
+
+-Tarea 43: Aprendamos un poco de SQL
