@@ -26,7 +26,7 @@ Seleccionar el campo nombre eliminando duplicados de todos los registros de la t
 
 Seleccionar todos los campos de todos los registros de la tabla, ordenados por el campo Email en orden ascendente. Si en el ORDER BY no se especifica el orden (ASC o DESC), es ascendente (ASC)
 
--- SELECT \* FROM subscribers ORDER BY SubscriptionDate DESC;
+- SELECT \* FROM subscribers ORDER BY SubscriptionDate DESC;
 
 Seleccionar todos los campos de todos los registros de la tabla, ordenados por el campo SubscriptionDate en orden descendente
 
