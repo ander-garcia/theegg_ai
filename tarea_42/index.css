@@ -1,0 +1,7 @@
+body {
+    font-family: "Helvetica", Sans-Serif;
+    background-image: url("the_egg.png");
+  }
+  .my-header {
+    color: rgb(28, 179, 23);
+}
