@@ -16,4 +16,6 @@ Theegg AI Academy
 
 -Tarea 38: Resolución de más algoritmos
 
+-Tarea 42: HTML5 y video
+
 -Tarea 43: Aprendamos un poco de SQL

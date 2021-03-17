@@ -1,0 +1,55 @@
+body {
+    font-family: "Helvetica", Sans-Serif;
+    background-image: linear-gradient( 135deg, #05b0ff69 10%, #fd5e086b 100%);
+
+  }
+
+
+/* From Omar Dsoky
+https://freefrontend.com/css-headers-footers/
+https://codepen.io/linux/pen/aEQKWP
+ */
+
+header {
+	text-align: center;
+	width: 100%;
+	height: 200px;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+}
+header .overlay{
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient( 135deg, #9f05ff69 10%, #fd5e086b 100%);
+	
+}
+
+h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: 80px;
+	margin-bottom: 10px;
+}
+
+h3, p {
+	font-family: 'Open Sans', sans-serif;
+	margin-bottom: 10px;
+}
+
+button {
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	background: #fff;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+}
+button:hover{
+	cursor: pointer;
+}
