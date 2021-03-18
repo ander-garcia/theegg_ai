@@ -1,4 +1,4 @@
-# TAREA 33: El juego de Pikachu
+# TAREA 41: Tu primera expresión regular
 
 ## Requerimientos
 
@@ -6,26 +6,24 @@ Python
 
 ## Resumen
 
-Para ejecutar, desde la línea de comandos y el directorio de la tarea_33:
+Para ejecutar, desde la línea de comandos y el directorio de la tarea_41:
 
         python main.py
 
-En la consola se mostrán mensajes de la evolución del combate hasta que finalice:
+En la consola es necesario introducir un texto. Tras pulsar enter, se muestra el número de caracteres y palabras del texto, y las 10 palabras que más aparecen en el formato (palabra, número de apariciones)
 
-Comienza el combate entre Pikachu y Jigglypuff
-Ataque de Pikachu, Jigglypuff tiene 45 puntos de vida
-Ataque de Jigglypuff, Pikachu tiene 55 puntos de vida
-Ataque de Pikachu, Jigglypuff tiene -10 puntos de vida
-Pikachu ha ganado
-Enhorabuena Pikachu !!
+Introduce texto a analizar:
+er er er trersafasdfasd sdfasf 77 fdadf 77 sdfaf 77 sdf a8 i k j u y h hhh sdfdf sfasd fa asdf adsf adsf
+Texto = er er er trersafasdfasd sdfasf 77 fdadf 77 sdfaf 77 sdf a8 i k j u y h hhh sdfdf sfasd fa asdf adsf adsf
+Número caracteres = 80
+Número palabras = 25
+Ranking de 10 palabras más repetidas = [('er', 3), ('77', 3), ('adsf', 2), ('trersafasdfasd', 1), ('sdfasf', 1), ('fdadf', 1), ('sdfaf', 1), ('sdf', 1), ('a8', 1), ('i', 1)]
 
 ## Explicación
 
-Desde el fichero main.py se crean los dos pokemon y se lanza el combate. El código de los pokemon está en la clase Pokemon en el fichero pokemon.py. La clase pokemon tiene un constructor en el que se indica el nombre, la vida, el ataque y el turno del pokemon; y una función de combate.
+Desde el fichero main.py se pide el texto a analizar, se crea un objeto de TextAnalyzer y se cuentan los caracteres, palabras y el ranking para mostrarlos por consola. El código de análisis del texto está en la clase TextAnalyzer en el fichero text_analyzer.py. La clase TextAnalyzer tiene un constructor en el que se indica el texto, y dos variables estáticas con los patrones para contar caracteres y palabaras.
 
-La función de combate es estática (es compartida por todas las instancias Pokemon, se marca con el @staticmethod en python). Sus parámetros son el primer y el segundo pokemon, y el parámetro opcional turno inicial (0 o 1, si no se indica se inicializa a 1). En la función se sigue el diagrama de flujo adjunto, mostrando por pantalla la evolución del combate y devolviendo el pokemon ganador.
-
-Desde el fichero main se felicita al pokemon ganador, en este caso Pikachu
+Estos patrones se utilizan para contar los caracteres, y las palabras. Para generar el ranking de palabras se utiliza el apoyo de Counter de collections (https://docs.python.org/3/library/collections.html#collections.Counter.most_common)
 
 ## Paso adicional: Test
 
@@ -33,4 +31,4 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "2 passed in 0.05s"
 
-Los test se encuentra en el fichero "pokemon_test.py". En este fichero hay dos tests, en uno el combate lo empieza Pikachu y en el otro JigglyPuff. Cada test comprueba quien es el ganador, y los puntos de vida restantes de cada Pokemon.
+Los test se encuentra en el fichero "text_analyzer_test.py". En este fichero hay tres tests, uno para cada método de la clase TextAnalyzer. En este fichero hay un array con datos de entrada (testdata), en el formato texto, número de caracteres, número de palabras, y raking de las primeras palabras.

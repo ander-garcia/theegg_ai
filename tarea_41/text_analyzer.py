@@ -1,4 +1,5 @@
 import re
+import collections
 
 
 class TextAnalyzer():
@@ -19,5 +20,7 @@ class TextAnalyzer():
         palabras = len(TextAnalyzer.patron_palabras.findall(self.texto))
         return palabras
 
-    def ranking_palabras(self):
-        return []
+    def ranking_palabras(self, top=None):
+        palabras = TextAnalyzer.patron_palabras.findall(self.texto.lower())
+        ranking = collections.Counter(palabras).most_common(top)
+        return ranking
