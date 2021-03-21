@@ -43,13 +43,14 @@ def test_sumatorio():
     assert estructura.sumatorio(lista) == 5
 
 
-def test_eliminar_menores():
+def test_eliminar_mayores():
     lista = estructura.crea_lista()
-    assert estructura.eliminar_menores(lista, 2) == []
+    assert estructura.eliminar_mayores(lista, 2) == []
     lista = estructura.crea_lista([5, 16, 2, 5, 57, 5, 2])
-    assert estructura.eliminar_menores(lista, 1) == [5, 16, 2, 5, 57, 5, 2]
-    assert estructura.eliminar_menores(lista, 40) == [57]
-    assert estructura.eliminar_menores(lista, 10) == [16, 57]
+    assert estructura.eliminar_mayores(lista, 40) == [5, 16, 2, 5, 5, 2]
+    assert estructura.eliminar_mayores(lista, 10) == [5, 2, 5, 5, 2]
+    assert estructura.eliminar_mayores(lista, 2) == [2, 2]
+    assert estructura.eliminar_mayores(lista, 1) == []
 
 
 def test_numero_ocurrencias():

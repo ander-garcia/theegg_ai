@@ -23,9 +23,9 @@ class EstructuraNumeros():
     def sumatorio(self, lista=[]):
         return sum(lista)
 
-    def eliminar_menores(self, lista=[], numero=0):
-        menores = [i for i in lista if i >= numero]
-        return menores
+    def eliminar_mayores(self, lista=[], numero=0):
+        menores_iguales = [i for i in lista if i <= numero]
+        return menores_iguales
 
     def numero_ocurrencias(self, lista=[]):
         ocurrencias = list(collections.Counter(lista).items())
