@@ -1,21 +1,6 @@
 from estructura_nombres import EstructuraNombres
 
 
-def muestra_menu_lista(lista):
-    print(f"La lista es  =  {lista}")
-    opcion = int(input(f"""
-    Elige tu opción:
-    1- Eliminar primera ocurrencia de un número
-    2 - Recorrer la lista para imprimir la sumatoria de todos los elementos.
-    3 - Crear una lista eliminando los elementos que sean mayores que un número
-    4 - Ocurrencias de la lista
-    5 - Añadir nuevo número
-    6 - Restaurar lista original ({lista_original})
-    0 - Salir
-    """))
-    return opcion
-
-
 def menu_nombres():
     lista = []
     nombre = input("Introduce nombre a añadir , ?x? para continuar:\n")
