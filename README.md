@@ -21,3 +21,5 @@ Theegg AI Academy
 -Tarea 42: HTML5 y video
 
 -Tarea 43: Aprendamos un poco de SQL
+
+-Tarea 52: Estructura de datos
