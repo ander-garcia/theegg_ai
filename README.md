@@ -22,4 +22,6 @@ Theegg AI Academy
 
 -Tarea 43: Aprendamos un poco de SQL
 
+-Tarea 45: Algoritmos de búsqueda
+
 -Tarea 52: Estructura de datos
