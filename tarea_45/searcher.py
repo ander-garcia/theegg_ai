@@ -19,6 +19,8 @@ class Searcher():
         if lista is None:
             lista = self.lista
         mitad = len(lista)//2
+        if len(lista) == 0:
+            return (-1, iteraciones)
         iteraciones = iteraciones + 1
         if lista[0] > number or lista[len(lista)-1] < number:
             return (-1, iteraciones)
