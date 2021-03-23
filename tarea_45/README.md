@@ -3,6 +3,7 @@
 ## Requerimientos
 
 Python
+https://www.geeksforgeeks.org/sorting-algorithms/
 
 ## Resumen
 

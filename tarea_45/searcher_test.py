@@ -12,13 +12,20 @@ def test_sort():
 
 def test_binary_search():
     tool = Searcher([1, 2, 3, 4])
-    assert tool.binary_search(3) == [2, 3]
+    assert tool.binary_search(3) == (2, 1)
+    assert tool.binary_search(1) == (0, 3)
+    tool = Searcher([1, 2, 3, 4, 5, 5, 6])
+    assert tool.binary_search(3) == (2, 3)
+    assert tool.binary_search(4) == (3, 1)
+    assert tool.binary_search(46) == (-1, 1)
     tool = Searcher([3, 21, 23, 33, 45, 56, 56, 65, 66, 123, 874, 1000])
-    assert tool.binary_search(874) == [9, 3]
+    assert tool.binary_search(874) == (10, 3)
 
 
 def test_secuential_search():
     tool = Searcher([1, 2, 3, 4])
-    assert tool.secuential_search(3) == [2, 3]
+    assert tool.secuential_search(3) == (2, 3)
+    assert tool.secuential_search(33) == (-1, 4)
     tool = Searcher([3, 21, 23, 33, 45, 56, 56, 65, 66, 123, 874, 1000])
-    assert tool.secuential_search(874) == [9, 3]
+    assert tool.secuential_search(874) == (10, 11)
+    assert tool.secuential_search(54353) == (-1, 12)

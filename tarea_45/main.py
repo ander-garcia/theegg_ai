@@ -1,13 +1,16 @@
-from text_analyzer import TextAnalyzer
+from searcher import Searcher
 TOP = 10
 
-texto = input("Introduce texto a analizar:\n")
-analizador = TextAnalyzer(texto)
-caracteres = analizador.cuenta_caracteres()
-palabras = analizador.cuenta_palabras()
-ranking = analizador.ranking_palabras(TOP)
-
-print(f"Texto =  {texto}")
-print(f"Número caracteres =  {caracteres}")
-print(f"Número palabras =  {palabras}")
-print(f"Ranking de {TOP} palabras más repetidas =   {ranking}")
+lista = [3, 56, 21, 33, 874, 123, 66, 1000,
+         23, 45, 65, 56]
+numero = 874
+tool = Searcher(lista)
+print(f"Lista original =  {tool.lista}")
+print(
+    f"Indice del número {numero} e iteraciones de búsqueda con el algoritmo secuencial =  {tool.secuential_search(numero)}")
+tool.sort()
+print(f"Lista ordenada =  {tool.lista}")
+print(
+    f"Indice del número {numero} e iteraciones de búsqueda con el algoritmo secuencial =  {tool.secuential_search(numero)}")
+print(
+    f"Indice del número {numero} e iteraciones de búsqueda con el algoritmo binario =  {tool.binary_search(numero)}")
