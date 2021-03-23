@@ -12,18 +12,32 @@ class Searcher():
         self.merge_sort(self.lista)
         return self.lista
 
+    def is_sorted(self, lista):
+        is_sorted = True
+        previous_value = lista[0]
+        for index, value in enumerate(lista):
+            if previous_value > value:
+                is_sorted = False
+                break
+            previous_value = value
+        return is_sorted
+
     def binary_search(self, number, iteraciones=0, index_offset=0, lista=None):
         # busca un valor en la lista (TIENE QUE ESTAR ORDENADA) con el algoritmo binario
         # y devuelve su índice y el número de iteraciones
         # si no lo encuentra devuelve -1
         if lista is None:
             lista = self.lista
-        mitad = len(lista)//2
         if len(lista) == 0:
             return (-1, iteraciones)
+        if not self.is_sorted(lista):
+            raise Exception(
+                "la búsqueda binaria necesita que el array este ordenado")
+
         iteraciones = iteraciones + 1
         if lista[0] > number or lista[len(lista)-1] < number:
             return (-1, iteraciones)
+        mitad = len(lista)//2
         if lista[mitad] > number:
             return self.binary_search(number, iteraciones, index_offset, lista[:mitad])
         elif lista[mitad] < number:

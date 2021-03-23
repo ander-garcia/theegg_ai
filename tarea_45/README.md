@@ -24,7 +24,7 @@ Desde el fichero main.py se crea un objeto de Searcher con la lista. Desde este 
 
 El método sort encapsula la llamada al algoritmo merge_sort.Se ha implementado este algoritmo por su buen rendimiento. El algoritmo divide la lista en mitades, hasta que se alcanzan listas de un elemento. Luego, estas listas se van uniendo y ordenando. La explicación de este algoritmo y otros algoritmos de búsqueda se puede consultar en https://www.geeksforgeeks.org/sorting-algorithms/
 
-En las búsquedas, hay un método para la búsqueda secuencial y otro para la binaria. Ambos devuelven el índice del valor buscado y el número de iteraciones empleadas. En el caso de la búsqueda binaria, como la lista tiene que estar ordenada,primero se comprueba que el valor está en el rango entre el primer y el último elemento. En caso contrario, el valor no va a estar dentro de la lista
+En las búsquedas, hay un método para la búsqueda secuencial y otro para la binaria. Ambos devuelven el índice del valor buscado y el número de iteraciones empleadas. En el caso de la búsqueda binaria, como la lista tiene que estar ordenada si no lo está se lanza una excepción y primero se comprueba que el valor está en el rango entre el primer y el último elemento. En caso contrario, el valor no va a estar dentro de la lista
 
 ## Paso adicional: Test
 
