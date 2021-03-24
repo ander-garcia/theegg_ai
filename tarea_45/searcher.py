@@ -14,6 +14,8 @@ class Searcher():
 
     def is_sorted(self, lista):
         is_sorted = True
+        if len(lista) == 0:
+            return True
         previous_value = lista[0]
         for index, value in enumerate(lista):
             if previous_value > value:
@@ -27,12 +29,13 @@ class Searcher():
         # y devuelve su índice y el número de iteraciones
         # si no lo encuentra devuelve -1
         if lista is None:
+            # el parametro lista será None sólo cuando se llama desde fuera
             lista = self.lista
+            if not self.is_sorted(lista):
+                raise Exception(
+                    "la búsqueda binaria necesita que el array este ordenado")
         if len(lista) == 0:
             return (-1, iteraciones)
-        if not self.is_sorted(lista):
-            raise Exception(
-                "la búsqueda binaria necesita que el array este ordenado")
 
         iteraciones = iteraciones + 1
         if lista[0] > number or lista[len(lista)-1] < number:

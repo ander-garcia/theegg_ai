@@ -1,5 +1,5 @@
 from searcher import Searcher
-TOP = 10
+import random
 
 lista = [3, 56, 21, 33, 874, 123, 66, 1000,
          23, 45, 65, 56]

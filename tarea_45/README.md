@@ -33,3 +33,27 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "2 passed in 0.05s"
 
 Los test se encuentra en el fichero "text_searcher.py". En este fichero hay tres tests, uno para cada algoritmo.
+
+## Rendimiento: análisis Big 0
+
+### Merge sort
+
+Este algoritmo siempre se ejecuta el mismo número de veces para la misma longitud de entrada: siempre tiene que dividir la lista de entrada hasta dividirla en listas de longitud 1, y luego ir juntándolas hasta alcanzar la longitud final. Su complejidad es la misma en el mejor y en el peor de los casos.
+
+Al dividr el array en mitades necesita log(n) iteraciones, y como luego es necesario hacer los merges, su complejidad es O(nlog(n)
+
+### Búsqueda secuencial
+
+En esta búsqueda, en el mejor de los casos el primer elemento será el de la búsqueda y sólo habrá una iteración. SI el elemento está al final (peor de los casos), se necesitarán n iteraciones. En el caso medio, se necesitarán n/2 iteraciones. Por tanto, su complejidad se considera O(n)
+
+### Búsqueda binaria
+
+En esta búsqueda, en el mejor de los casos el elemento de la mitad será el de la búsqueda y sólo habrá una iteración. Si el elemento está en otra posición, en el peor de los casos habrá que hacer log(n) iteraciones. En el caso medio también se necesitarán log(n) iteraciones, ya que en la mayoría de las posiciones es necesario hacer log(n) divisiones por la mitad. Por tanto, su complejidad se considera O(log(n))
+
+### Comparación
+
+A modo de ejemplo se ha ejecutado el algoritmo de búsqueda sobre arrays aleatorios de diferente longitud (desde 10 a 1000000), y se ha buscado el primer elemento, el último y el de la mitad. El fichero rendimiento.py muestra los resultados separados por ; en el formato longitud-índice del valor a buscar-iteraciones-tipo de algoritmo de búsqueda.
+
+Para la búsqueda binaria, salvo cuando se busca el valor de la mitad (1 iteración),en el resto de casos las iteraciones se corresponden con log(n), necesitándose 20 iteraciones para 1000000 elementos
+
+En el caso de la búsqueda secuencial, se necesitan 1 iteración (primer elemento), n/2 (elemento mitad) y n iteraciones (último elemento). En el caso del array de 1000000 elementos, en el peor caso se necesitan 1000000 iteraciones
