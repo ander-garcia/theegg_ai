@@ -26,4 +26,6 @@ Theegg AI Academy
 
 -Tarea 45: Algoritmos de búsqueda
 
+- Tarea 49: Aprender a pensar como un programador: Introducción a la POO
+
 -Tarea 52: Estructura de datos
