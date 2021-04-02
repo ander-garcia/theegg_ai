@@ -29,3 +29,5 @@ Theegg AI Academy
 -Tarea 49: Aprender a pensar como un programador: Introducción a la POO
 
 -Tarea 52: Estructura de datos
+
+-Tarea 62: Convertir una computadora tonta en algo más inteligente: bash scripting
