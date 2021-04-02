@@ -19,12 +19,12 @@ Luego se compara mediante diff este listado con el listado anterior de tareas y 
 Si el fichero tiene contenido, se excluye la primera línea (que la mete diff) para contar cuentas tareas nuevas hay y se sacan por pantalla.
 Por último, se borran los ficheros temporales y se actualiza el contenido del fichero con las tareas previas
 
-### Backup
+### Backup (backup.sh)
 
 Este script está pensado para agilizar la generación de backups. Dada una carpeta de origen y destino, crea un backup en el destino en el formato tar y nombre YYYYMMDD_HHMMSS_egg_backup.tar.
 Por último, busca en la carpeta de backup los ficheros de más de N días (argumento -d) y los borra
 
-### Renombrar fotos
+### Renombrar fotos (renombrar_a_dia_foto.sh)
 
 Este script renombra las fotos usando la fecha de creación de sus datos EXIF. Está pensado para guardar las fotos con esta nomenclatura. Tiene un parámetro para indicar la carpeta en la que están los fotos. Luego busca las fotos y renombra cada una de ellas mediante el comando exiftool
 
