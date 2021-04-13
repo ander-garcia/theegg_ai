@@ -66,4 +66,4 @@ Para lanzar los test es necesario instalar la librería pytest (https://docs.pyt
 
 A continuación basta con ejecutar pytest. La consola debe mostar un mensaje en verde similar a "4 passed in 0.05s"
 
-Los test se encuentra en el fichero "fraccion_test.py". En este fichero hay un array con datos de entrada (testdata),, en el formato número decimal, numerador_esperado, denominador_esperado. Los test llaman a la funcion "fraccion_irreducible" y comprueban que los resultados obtenidos son los esperados
+Los test se encuentra en el fichero "lechero_test.py". En este fichero hay un array con datos de entrada (testdata), en el formato vacas_venta, kg_camion, peso_vacas (array), litros_leche_vacas (array),produccion_maxima. Los test llaman a la funcion "elegir_vacas" y comprueban que la producción máxima calculada es la que se ha indicado en el array testdata.
