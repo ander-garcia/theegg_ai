@@ -25,7 +25,7 @@ def compress(text, max_window=3):
         if best_length == 0:
             best_length = 1
         # print(f" {best_offset},{best_length},{text[index]}")
-        output.append((best_offset, best_length, text[index]))
+        output.append((best_offset, best_length, ""))
         index = index + best_length
     return output
 
