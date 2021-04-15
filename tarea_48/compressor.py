@@ -3,18 +3,18 @@
 class Compressor():
 
     def __init__(self, max_window=300):
+        # numero máximo de caracteres previos de búsqueda
         self.max_window = max_window
 
     def compress(self, text):
         index = 0
         output = []
-        salida = ""
         while index < len(text):
             offset = 1
             length = 1
             best_offset = 0
             best_length = 0
-            while index - offset >= 0:
+            while index - offset >= 0 or offset >= self.max_window:
                 if text[index] == text[index-offset]:
                     length = 1
                     extra_length = 1
