@@ -12,6 +12,8 @@ Theegg AI Academy
 
 -Tarea 24: Construye un simulador (decimal a binario)
 
+-Tarea 26: Analizar datos COVID-19
+
 -Tarea 33: El juego de Pikachu
 
 -Tarea 38: Resolución de más algoritmos
